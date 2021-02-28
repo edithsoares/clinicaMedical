@@ -39,7 +39,9 @@ namespace Presentation
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ptbMin = new System.Windows.Forms.PictureBox();
             this.ptbClose = new System.Windows.Forms.PictureBox();
+            this.lblMsgError = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMin)).BeginInit();
@@ -60,30 +62,26 @@ namespace Presentation
             // txtPass
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(80)))));
-            this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPass.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass.ForeColor = System.Drawing.Color.Silver;
-            this.txtPass.Location = new System.Drawing.Point(225, 123);
+            this.txtPass.Location = new System.Drawing.Point(240, 150);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(408, 22);
-            this.txtPass.TabIndex = 3;
-            this.txtPass.Text = "Password";
-            this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
-            this.txtPass.Leave += new System.EventHandler(this.txtPass_Leave);
+            this.txtPass.Size = new System.Drawing.Size(340, 29);
+            this.txtPass.TabIndex = 1;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // txtUser
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(80)))));
-            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUser.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUser.ForeColor = System.Drawing.Color.Silver;
-            this.txtUser.Location = new System.Drawing.Point(225, 83);
+            this.txtUser.Location = new System.Drawing.Point(240, 94);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(408, 22);
-            this.txtUser.TabIndex = 4;
-            this.txtUser.Text = "User";
-            this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
-            this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
+            this.txtUser.Size = new System.Drawing.Size(340, 29);
+            this.txtUser.TabIndex = 0;
+            this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter_1);
             // 
             // btnLogin
             // 
@@ -93,10 +91,10 @@ namespace Presentation
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.Color.LightGray;
-            this.btnLogin.Location = new System.Drawing.Point(225, 213);
+            this.btnLogin.Location = new System.Drawing.Point(241, 224);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(408, 40);
-            this.btnLogin.TabIndex = 5;
+            this.btnLogin.Size = new System.Drawing.Size(340, 40);
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -106,10 +104,10 @@ namespace Presentation
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Ebrima", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.Silver;
-            this.linkLabel1.Location = new System.Drawing.Point(369, 267);
+            this.linkLabel1.Location = new System.Drawing.Point(358, 267);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(113, 17);
-            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Forgot Password?";
             // 
@@ -168,32 +166,55 @@ namespace Presentation
             this.ptbClose.TabStop = false;
             this.ptbClose.Click += new System.EventHandler(this.ptbClose_Click);
             // 
+            // lblMsgError
+            // 
+            this.lblMsgError.AutoSize = true;
+            this.lblMsgError.Font = new System.Drawing.Font("Ebrima", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsgError.ForeColor = System.Drawing.Color.Silver;
+            this.lblMsgError.Location = new System.Drawing.Point(253, 192);
+            this.lblMsgError.Name = "lblMsgError";
+            this.lblMsgError.Size = new System.Drawing.Size(0, 17);
+            this.lblMsgError.TabIndex = 4;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ebrima", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(222, 162);
+            this.label2.Location = new System.Drawing.Point(236, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 17);
+            this.label2.Size = new System.Drawing.Size(42, 21);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Error";
+            this.label2.Text = "User";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(237, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 21);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Pass";
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(80)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(670, 309);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblMsgError);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtUser);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.ptbMin);
             this.Controls.Add(this.ptbClose);
+            this.Controls.Add(this.txtUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormLogin";
             this.Opacity = 0.9D;
@@ -222,6 +243,8 @@ namespace Presentation
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMsgError;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
