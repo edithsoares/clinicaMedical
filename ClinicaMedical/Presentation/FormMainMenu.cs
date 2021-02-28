@@ -30,6 +30,8 @@ namespace Presentation
         private const int HTBOTTOMRIGHT = 17;
         private Rectangle sizeGripRectangle;
 
+        
+
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
@@ -82,11 +84,10 @@ namespace Presentation
             Application.Exit();
         }
 
+        
         // Capture a posição e o tamanho antes de maximizar para restaurar
         int lx, ly;
         int sw, sh;
-
-       
 
         private void ptbMaximize_Click(object sender, EventArgs e)
         {
@@ -97,9 +98,10 @@ namespace Presentation
 
             ptbMaximize.Visible = false;
             ptbRestaurar.Visible = true;
-
+            
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
+            
         }
 
         private void ptbRestaurar_Click(object sender, EventArgs e)
@@ -116,17 +118,98 @@ namespace Presentation
             this.WindowState = FormWindowState.Minimized;
         }
 
+        // Botôes para abris os formularios
+        private void btnPaciente_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormPaciente>();
+            btnPaciente.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormHistorico>();
+            btnPaciente.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
+        private void btnCalendario_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormCalendario>();
+            btnPaciente.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormConfig>();
+            btnPaciente.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormChat>();
+            btnPaciente.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
+        private void pnlBarraTitulo_MouseMove(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        // Criar formulário de arrasto
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void btnLoginTeste_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<FormLogin>();
+        }
+
+
+
+
+
+        // MÉTODO PARA ABRIR OS FORMULÁRIOS DENTRO DO PAINEL
+        private void AbrirFormulario<MiForm>() where MiForm : Form, new()
+        {
+            Form formulario;
+            formulario = pnlFormularios.Controls.OfType<MiForm>().FirstOrDefault();//Busca en la colecion el formulario
+                                                                                     //si el formulario/instancia no existe
+            if (formulario == null)
+            {
+                formulario = new MiForm();
+                formulario.TopLevel = false;
+                formulario.FormBorderStyle = FormBorderStyle.None;
+                formulario.Dock = DockStyle.Fill;
+                pnlFormularios.Controls.Add(formulario);
+                pnlFormularios.Tag = formulario;
+                formulario.Show();
+                formulario.BringToFront();
+            }
+            //si el formulario/instancia existe
+            else
+            {
+                formulario.BringToFront();
+            }
+        }
+
+
+        // Método para resturar a cor original do botão
+        private void CloseForms(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms["FormPaciente"] == null )            
+                btnPaciente.BackColor = Color.FromArgb(4, 41, 68);            
+            if (Application.OpenForms["FormHistorico"] == null)           
+                btnPaciente.BackColor = Color.FromArgb(4, 41, 68);           
+            if (Application.OpenForms["FormCalendario"] == null)            
+                btnPaciente.BackColor = Color.FromArgb(4, 41, 68);           
+            if (Application.OpenForms["FormConfig"] == null)           
+                btnPaciente.BackColor = Color.FromArgb(4, 41, 68);            
+            if (Application.OpenForms["FormChat"] == null)           
+                btnPaciente.BackColor = Color.FromArgb(4, 41, 68);         
+        }
     }
-    //// Criar formulário de arrasto
-    //[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-    //private extern static void ReleaseCapture();
-
-    //[DllImport("user32.DLL", EntryPoint = "SendMessage")]
-    //private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-    //private void panelBarraTitulo_MouseMove(object sender, MouseEventArgs e)
-    //{
-    //    ReleaseCapture();
-    //    object p = SendMessage(this.Handle, 0x112, 0xf012, 0);
-    //}
 }
