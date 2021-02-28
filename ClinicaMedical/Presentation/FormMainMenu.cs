@@ -23,16 +23,19 @@ namespace Presentation
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
         }
-
+        //
         //funcionalidade de redimensionar o formulário
+        //
 
-        // RESIZE METODO PARA REDIMENCIONAR/CAMBIAR TAMAÑO A FORMULARIO EN TIEMPO DE EJECUCION
+        // Método para redimencionar o tamanho para a forma no tempo de execução
         private int tolerance = 12;
         private const int WM_NCHITTEST = 132;
         private const int HTBOTTOMRIGHT = 17;
         private Rectangle sizeGripRectangle;
 
-        
+        // Capturar a posição e o tamanho antes de maximizar para restauração
+        int lx, ly;
+        int sw, sh;
 
         protected override void WndProc(ref Message m)
         {
@@ -50,8 +53,7 @@ namespace Presentation
             }
         }
 
-        //DIBUJAR RECTANGULO / EXCLUIR ESQUINA PANEL
-
+        //Desenha retangulo / Excluir painel de canto
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -67,8 +69,7 @@ namespace Presentation
 
         }
 
-        //COLOR Y GRIP DE RECTANGULO INFERIOR
-
+        //Cor e grip têtangulo inferior
         protected override void OnPaint(PaintEventArgs e)
         {
             SolidBrush blueBrush = new SolidBrush(Color.FromArgb(244, 244, 244));
@@ -80,16 +81,13 @@ namespace Presentation
             ControlPaint.DrawSizeGrip(e.Graphics, Color.Transparent, sizeGripRectangle);
 
         }
+        
+        // Botões Maximizar / Minimizar / Restaurar e Encerrar
         private void ptbCancel_Click(object sender, EventArgs e)
         {
             // Fechar Aplicação
             Application.Exit();
         }
-
-        
-        // Capture a posição e o tamanho antes de maximizar para restaurar
-        int lx, ly;
-        int sw, sh;
 
         private void ptbMaximize_Click(object sender, EventArgs e)
         {
@@ -157,7 +155,7 @@ namespace Presentation
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        // Criar formulário de arrasto
+        // Criar formulário de arrasto // Usa Dll interna
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -170,6 +168,8 @@ namespace Presentation
             AbrirFormulario<FormLogin>();
         }
 
+
+        // Não deu certo AINDA
         //private void LoadUserData()
         //{
         //    lblUsername.Text = .LoginName;
@@ -179,21 +179,18 @@ namespace Presentation
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure to log out?", "Warning",
+            if (MessageBox.Show("Tem certeza de que deseja sair?", "Warning",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 this.Close();
         }
 
 
-
-
-
-        // MÉTODO PARA ABRIR OS FORMULÁRIOS DENTRO DO PAINEL
+        // Método para abrir os formulários dentro do painel
         private void AbrirFormulario<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
-            formulario = pnlFormularios.Controls.OfType<MiForm>().FirstOrDefault();//Busca en la colecion el formulario
-                                                                                     //si el formulario/instancia no existe
+            formulario = pnlFormularios.Controls.OfType<MiForm>().FirstOrDefault();// Procure o formulário na coleção
+                                                                                   // Se o formulário / instância não existe
             if (formulario == null)
             {
                 formulario = new MiForm();
@@ -205,7 +202,7 @@ namespace Presentation
                 formulario.Show();
                 formulario.BringToFront();
             }
-            //si el formulario/instancia existe
+            // Se o formulário / instância existe
             else
             {
                 formulario.BringToFront();
