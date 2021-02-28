@@ -14,47 +14,44 @@ namespace Presentation
             InitializeComponent();
         }
 
-
-
         // Configurações de Desing do Form
-        private void txtUser_Enter(object sender, EventArgs e)
+        private void txtuser_Enter(object sender, EventArgs e)
         {
-            if (txtUser.Text == "Usuario")
+            if (txtUser.Text == "User")
             {
                 txtUser.Text = "";
                 txtUser.ForeColor = Color.LightGray;
             }
         }
 
-        private void txtUser_Leave(object sender, EventArgs e)
+        private void txtuser_Leave(object sender, EventArgs e)
         {
             if (txtUser.Text == "")
             {
-                txtUser.Text = "Usuario";
+                txtUser.Text = "User";
                 txtUser.ForeColor = Color.Silver;
             }
         }
 
-
-        private void txtPass_Enter(object sender, EventArgs e)
+        private void txtpass_Enter(object sender, EventArgs e)
         {
-            if (txtPass.Text == "Contraseña")
+            if (txtPass.Text == "Pass")
             {
                 txtPass.Text = "";
                 txtPass.ForeColor = Color.LightGray;
                 txtPass.UseSystemPasswordChar = true;
             }
         }
-        private void txtPass_Leave(object sender, EventArgs e)
+
+        private void txtpass_Leave(object sender, EventArgs e)
         {
             if (txtPass.Text == "")
             {
-                txtPass.Text = "Contraseña";
+                txtPass.Text = "Pass";
                 txtPass.ForeColor = Color.Silver;
-                txtPass.UseSystemPasswordChar = false;
+                txtPass.UseSystemPasswordChar = true;
             }
         }
-
         private void ptbMin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -88,16 +85,53 @@ namespace Presentation
         // Funcionalidades dos Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // verifica os dados 
-            if (txtUser.Text != "UserName" && txtUser.TextLength > 2)
-            {
-                // Valida os dados
-                if (txtPass.Text != "Password"){}
+             
+                if (txtUser.Text != "Username" && txtUser.TextLength > 2)
+                {
+                    if (txtPass.Text != "Password")
+                    {
+                        UserModel user = new UserModel();
+                        var validLogin = user.LoginUser(txtUser.Text, txtPass.Text);
+                        if (validLogin == true)
+                        {
+                            FormMainMenu mainMenu = new FormMainMenu();
+                            MessageBox.Show("Bem Vindo " + CacheDoUsuario.FirstName + ", " + CacheDoUsuario.Sobrenome);
+                            mainMenu.Show();
+                            mainMenu.FormClosed += Logout;
+                            this.Hide();
+                        }
+                        else
+                        {
+                            msgError("Incorrect username or password entered. \n   Please try again.");
+                            txtPass.Text = " ";
+                            txtPass.UseSystemPasswordChar = false;
+                            txtUser.Focus();
+                        }
+                    }
+                    else msgError("Please enter password.");
+                }
+                else msgError("Please enter username.");
             }
-            else
+
+            private void msgError(string msg)
             {
-               // Continuar aqui ...
+                lblMsgError.Text = "    " + msg;
+                lblMsgError.Visible = true;
             }
+
+            private void Logout(object sender, FormClosedEventArgs e)
+            {
+                txtPass.Text = "Password";
+                txtPass.UseSystemPasswordChar = false;
+                txtUser.Text = "Username";
+                lblMsgError.Visible = false;
+                this.Show();
+            }
+
+        private void txtUser_Enter_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
+
