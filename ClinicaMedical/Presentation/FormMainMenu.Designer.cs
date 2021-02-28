@@ -33,26 +33,24 @@ namespace Presentation
             this.pnlConteiner = new System.Windows.Forms.Panel();
             this.pnlFormularios = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnPaciente = new System.Windows.Forms.Button();
             this.btnChat = new System.Windows.Forms.Button();
             this.btnHistorico = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnCalendario = new System.Windows.Forms.Button();
             this.pnlBarraTitulo = new System.Windows.Forms.Panel();
-            this.btnLoginTeste = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ptbRestaurar = new System.Windows.Forms.PictureBox();
             this.ptbCancel = new System.Windows.Forms.PictureBox();
             this.ptbMinimize = new System.Windows.Forms.PictureBox();
             this.ptbMaximize = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.pnlConteiner.SuspendLayout();
             this.pnlFormularios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.pnlBarraTitulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMinimize)).BeginInit();
@@ -74,7 +72,6 @@ namespace Presentation
             // pnlFormularios
             // 
             this.pnlFormularios.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlFormularios.Controls.Add(this.button1);
             this.pnlFormularios.Controls.Add(this.label1);
             this.pnlFormularios.Controls.Add(this.pictureBox1);
             this.pnlFormularios.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -94,11 +91,20 @@ namespace Presentation
             this.label1.TabIndex = 1;
             this.label1.Text = "Medical";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.Health_PNG_Image;
+            this.pictureBox1.Location = new System.Drawing.Point(200, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(498, 353);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(75)))));
             this.pnlMenu.Controls.Add(this.btnLogout);
-            this.pnlMenu.Controls.Add(this.btnLoginTeste);
             this.pnlMenu.Controls.Add(this.btnPaciente);
             this.pnlMenu.Controls.Add(this.btnChat);
             this.pnlMenu.Controls.Add(this.btnHistorico);
@@ -110,6 +116,25 @@ namespace Presentation
             this.pnlMenu.Size = new System.Drawing.Size(240, 560);
             this.pnlMenu.TabIndex = 1;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(50)))), ((int)(((byte)(20)))));
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnLogout.Image = global::Presentation.Properties.Resources.logout__1_1;
+            this.btnLogout.Location = new System.Drawing.Point(4, 503);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(230, 45);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // btnPaciente
             // 
             this.btnPaciente.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
@@ -119,7 +144,7 @@ namespace Presentation
             this.btnPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaciente.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnPaciente.Location = new System.Drawing.Point(4, 33);
+            this.btnPaciente.Location = new System.Drawing.Point(3, 86);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(230, 45);
             this.btnPaciente.TabIndex = 0;
@@ -136,7 +161,7 @@ namespace Presentation
             this.btnChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChat.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnChat.Location = new System.Drawing.Point(4, 316);
+            this.btnChat.Location = new System.Drawing.Point(0, 311);
             this.btnChat.Name = "btnChat";
             this.btnChat.Size = new System.Drawing.Size(230, 45);
             this.btnChat.TabIndex = 4;
@@ -153,7 +178,7 @@ namespace Presentation
             this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorico.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnHistorico.Location = new System.Drawing.Point(4, 112);
+            this.btnHistorico.Location = new System.Drawing.Point(4, 137);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(230, 45);
             this.btnHistorico.TabIndex = 1;
@@ -170,7 +195,7 @@ namespace Presentation
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfig.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnConfig.Location = new System.Drawing.Point(4, 265);
+            this.btnConfig.Location = new System.Drawing.Point(3, 249);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(230, 45);
             this.btnConfig.TabIndex = 3;
@@ -187,7 +212,7 @@ namespace Presentation
             this.btnCalendario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCalendario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalendario.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCalendario.Location = new System.Drawing.Point(4, 214);
+            this.btnCalendario.Location = new System.Drawing.Point(3, 188);
             this.btnCalendario.Name = "btnCalendario";
             this.btnCalendario.Size = new System.Drawing.Size(230, 45);
             this.btnCalendario.TabIndex = 2;
@@ -208,33 +233,6 @@ namespace Presentation
             this.pnlBarraTitulo.Size = new System.Drawing.Size(1100, 40);
             this.pnlBarraTitulo.TabIndex = 0;
             this.pnlBarraTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBarraTitulo_MouseMove);
-            // 
-            // btnLoginTeste
-            // 
-            this.btnLoginTeste.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnLoginTeste.FlatAppearance.BorderSize = 0;
-            this.btnLoginTeste.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(50)))), ((int)(((byte)(20)))));
-            this.btnLoginTeste.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnLoginTeste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoginTeste.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoginTeste.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnLoginTeste.Location = new System.Drawing.Point(4, 163);
-            this.btnLoginTeste.Name = "btnLoginTeste";
-            this.btnLoginTeste.Size = new System.Drawing.Size(230, 45);
-            this.btnLoginTeste.TabIndex = 5;
-            this.btnLoginTeste.Text = "LoginTeste";
-            this.btnLoginTeste.UseVisualStyleBackColor = true;
-            this.btnLoginTeste.Click += new System.EventHandler(this.btnLoginTeste_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.Health_PNG_Image;
-            this.pictureBox1.Location = new System.Drawing.Point(200, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(498, 353);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // ptbRestaurar
             // 
@@ -284,33 +282,6 @@ namespace Presentation
             this.ptbMaximize.TabStop = false;
             this.ptbMaximize.Click += new System.EventHandler(this.ptbMaximize_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(65, 400);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(50)))), ((int)(((byte)(20)))));
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnLogout.Image = global::Presentation.Properties.Resources.logout__1_1;
-            this.btnLogout.Location = new System.Drawing.Point(3, 431);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(230, 45);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLogout.UseVisualStyleBackColor = true;
-            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,9 +294,9 @@ namespace Presentation
             this.pnlConteiner.ResumeLayout(false);
             this.pnlFormularios.ResumeLayout(false);
             this.pnlFormularios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlMenu.ResumeLayout(false);
             this.pnlBarraTitulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMinimize)).EndInit();
@@ -351,8 +322,6 @@ namespace Presentation
         private System.Windows.Forms.PictureBox ptbCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnLoginTeste;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnLogout;
     }
 }
