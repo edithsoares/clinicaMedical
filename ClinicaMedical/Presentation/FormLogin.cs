@@ -14,43 +14,29 @@ namespace Presentation
             InitializeComponent();
         }
 
+
         // Configurações de Desing do Form
-        private void txtuser_Enter(object sender, EventArgs e)
+        private void txtUser_Enter_1(object sender, EventArgs e)
         {
-            if (txtUser.Text == "User")
-            {
                 txtUser.Text = "";
                 txtUser.ForeColor = Color.LightGray;
-            }
         }
 
-        private void txtuser_Leave(object sender, EventArgs e)
+        private void txtUser_Leave(object sender, EventArgs e)
         {
-            if (txtUser.Text == "")
-            {
-                txtUser.Text = "User";
-                txtUser.ForeColor = Color.Silver;
-            }
+                txtUser.ForeColor = Color.Silver;           
         }
 
-        private void txtpass_Enter(object sender, EventArgs e)
+        private void txtPass_Enter(object sender, EventArgs e)
         {
-            if (txtPass.Text == "Pass")
-            {
-                txtPass.Text = "";
                 txtPass.ForeColor = Color.LightGray;
                 txtPass.UseSystemPasswordChar = true;
-            }
         }
 
-        private void txtpass_Leave(object sender, EventArgs e)
-        {
-            if (txtPass.Text == "")
-            {
-                txtPass.Text = "Pass";
+        private void txtPass_Leave(object sender, EventArgs e)
+        { 
                 txtPass.ForeColor = Color.Silver;
                 txtPass.UseSystemPasswordChar = true;
-            }
         }
         private void ptbMin_Click(object sender, EventArgs e)
         {
@@ -62,7 +48,7 @@ namespace Presentation
             Application.Exit();
         }
 
-        // Arrastar o Form
+        // Arrastar o FormLogin
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -85,9 +71,10 @@ namespace Presentation
         // Funcionalidades dos Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
-             
+                // Verifica campos com valor maior que 2
                 if (txtUser.Text != "Username" && txtUser.TextLength > 2)
                 {
+                    // Validação da senha
                     if (txtPass.Text != "Password")
                     {
                         UserModel user = new UserModel();
@@ -102,36 +89,33 @@ namespace Presentation
                         }
                         else
                         {
-                            msgError("Incorrect username or password entered. \n   Please try again.");
+                            msgError("Nome de usuário ou senha incorreta inserida. \n Por favor, tente novamente.");
                             txtPass.Text = " ";
                             txtPass.UseSystemPasswordChar = false;
                             txtUser.Focus();
                         }
-                    }
-                    else msgError("Please enter password.");
+                    } // Se campos vazios
+                    else msgError("Por favor, digite a senha.");
                 }
-                else msgError("Please enter username.");
+                else msgError("Digite o nome de usuário.");
             }
 
+            // Método msg de erro
             private void msgError(string msg)
             {
                 lblMsgError.Text = "    " + msg;
                 lblMsgError.Visible = true;
             }
 
+            // Método logout, voltar a tela de login
             private void Logout(object sender, FormClosedEventArgs e)
             {
-                txtPass.Text = "Password";
+                txtPass.Text = " ";
                 txtPass.UseSystemPasswordChar = false;
-                txtUser.Text = "Username";
+                txtUser.Text = " ";
                 lblMsgError.Visible = false;
                 this.Show();
-            }
-
-        private void txtUser_Enter_1(object sender, EventArgs e)
-        {
-
-        }
+            }     
     }
 }
 
