@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Domain;
+using Common.Cache;
 
 namespace Presentation
 {
@@ -166,6 +168,20 @@ namespace Presentation
         private void btnLoginTeste_Click(object sender, EventArgs e)
         {
             AbrirFormulario<FormLogin>();
+        }
+
+        //private void LoadUserData()
+        //{
+        //    lblUsername.Text = .LoginName;
+        //    lblPosition.Text = UserCache.Position;
+        //    lblEmail.Text = UserCache.Email;
+        //}
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to log out?", "Warning",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                this.Close();
         }
 
 
