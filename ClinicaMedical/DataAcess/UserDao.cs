@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Common.Cache;
 
 namespace DataAcess
 {
+    //
+    // - Camada de acesso a dados
+    //
+
     public class UserDao: ConnectionToSql
     {
-       public bool Login(string user, string pass)
+        // Login
+        public bool Login(string user, string pass)
         {
             using (var connection = GetConnection())
             {
@@ -52,5 +53,70 @@ namespace DataAcess
                 
             }
         }
-    }
+
+
+        //
+        // - Aplicar segurança contra ataques
+        //
+
+        // Verificação de Usúarios
+        public bool ExisteUsers(int id, string loginName, string pass)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using(var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+
+                    command.CommandText = @"select * from users where userId=@id and 
+                        loginName=@loginName and password=@pass";
+
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@loginName", loginName);
+                    command.Parameters.AddWithValue("@pass", pass);
+
+                    command.CommandType = CommandType.Text;
+
+                    var reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+        }
+
+        //
+        // - Segurança de acordo com os tipos ou posições / Cargos dos usuários.
+        //
+
+        // Verifica Posição / Cargo de user
+        public void ManagePermissions()
+        {
+            if (CacheDoUsuario.Position == Positions.Receptionist)
+            {
+                // Add métodos de restrição de acesso ao user.
+            }
+            else if (CacheDoUsuario.Position == Positions.Accounting)
+            {
+                // Add métodos de restrição de acesso ao user.
+            }
+            else if (CacheDoUsuario.Position == Positions.Administrator)
+            {
+                // Add métodos de restrição de acesso ao user.
+            }
+            else
+            {
+                // User não encontrado ou Carho não existe
+            }
+        }
+    }   
 }

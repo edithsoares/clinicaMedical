@@ -13,6 +13,10 @@ using Common.Cache;
 
 namespace Presentation
 {
+    //
+    // - Camada de apresentação
+    //
+
     public partial class FormMainMenu : Form
     {
         public FormMainMenu()
@@ -23,11 +27,60 @@ namespace Presentation
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
         }
+
+
         //
-        //funcionalidade de redimensionar o formulário
+        //Segurança contra ataques
         //
 
-        // Método para redimencionar o tamanho para a forma no tempo de execução
+        private void FormMainMenu_Load(object sender, EventArgs e)
+        {
+            ManagePermissionss();
+            Security();
+        }
+
+        private void Security()
+        {
+            var userModel = new UserModel();
+            if (userModel.SecurityLogin() == false)
+            {
+                MessageBox.Show("Erro fatal, foi detectado que você está tentando acessar o sistema sem credenciais, faça o login e identifique-se");
+                Application.Exit();
+            }
+        }
+
+        //
+        // - Segurança de acordo com os tipos ou posições / Cargos dos usuários.
+        //
+
+        // Verifica Posição / Cargo de user
+        public void ManagePermissionss()
+        {
+            if (CacheDoUsuario.Position == Positions.Receptionist)
+            {
+                // Restrição de acesso ao user.
+                btnConfig.Enabled = false;
+            }
+           if (CacheDoUsuario.Position == Positions.Accounting)
+            {
+                // Restrição de acesso ao user.
+                btnPaciente.Enabled = false;
+                btnHistorico.Enabled = false;
+                btnConfig.Enabled = false;
+            }
+            if (CacheDoUsuario.Position == Positions.Administrator)
+            {
+                // Restrição de acesso ao user
+                // Sem restrição por enquanto
+            }
+
+        }
+
+        //
+        // Desing
+        //
+
+        // Redimencionar o tamanho para a forma no tempo de execuçãos
         private int tolerance = 12;
         private const int WM_NCHITTEST = 132;
         private const int HTBOTTOMRIGHT = 17;
@@ -37,6 +90,7 @@ namespace Presentation
         int lx, ly;
         int sw, sh;
 
+        // Redimencionar o tamanho para a forma no tempo de execução
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
@@ -163,12 +217,6 @@ namespace Presentation
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-        private void btnLoginTeste_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario<FormLogin>();
-        }
-
-
         // Não deu certo AINDA
         //private void LoadUserData()
         //{
@@ -184,6 +232,7 @@ namespace Presentation
                 this.Close();
         }
 
+        
 
         // Método para abrir os formulários dentro do painel
         private void AbrirFormulario<MiForm>() where MiForm : Form, new()

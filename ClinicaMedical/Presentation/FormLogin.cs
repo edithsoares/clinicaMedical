@@ -18,25 +18,25 @@ namespace Presentation
         // Configurações de Desing do Form
         private void txtUser_Enter_1(object sender, EventArgs e)
         {
-                txtUser.Text = "";
-                txtUser.ForeColor = Color.LightGray;
+            txtUser.Text = "";
+            txtUser.ForeColor = Color.LightGray;
         }
 
         private void txtUser_Leave(object sender, EventArgs e)
         {
-                txtUser.ForeColor = Color.Silver;           
+            txtUser.ForeColor = Color.Silver;
         }
 
         private void txtPass_Enter(object sender, EventArgs e)
         {
-                txtPass.ForeColor = Color.LightGray;
-                txtPass.UseSystemPasswordChar = true;
+            txtPass.UseSystemPasswordChar = false;
+            txtPass.ForeColor = Color.LightGray;
         }
 
         private void txtPass_Leave(object sender, EventArgs e)
-        { 
-                txtPass.ForeColor = Color.Silver;
-                txtPass.UseSystemPasswordChar = true;
+        {
+            txtPass.UseSystemPasswordChar = false;
+            txtPass.ForeColor = Color.Silver;
         }
         private void ptbMin_Click(object sender, EventArgs e)
         {
@@ -110,12 +110,16 @@ namespace Presentation
             // Método logout, voltar a tela de login
             private void Logout(object sender, FormClosedEventArgs e)
             {
-                txtPass.Text = " ";
-                txtPass.UseSystemPasswordChar = false;
-                txtUser.Text = " ";
+                
+                
+                txtPass.Text = "";
+                txtPass.UseSystemPasswordChar = true;
+                txtUser.Text = "";
                 lblMsgError.Visible = false;
                 this.Show();
-            }     
+                CacheDoUsuario.Password = " ";
+                CacheDoUsuario.LoginName = " ";
+        }     
     }
 }
 
