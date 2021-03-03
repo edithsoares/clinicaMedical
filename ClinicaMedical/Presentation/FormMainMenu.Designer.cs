@@ -31,6 +31,9 @@ namespace Presentation
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
             this.pnlConteiner = new System.Windows.Forms.Panel();
+            this.pnlFormularios = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnPaciente = new System.Windows.Forms.Button();
@@ -43,18 +46,15 @@ namespace Presentation
             this.ptbCancel = new System.Windows.Forms.PictureBox();
             this.ptbMinimize = new System.Windows.Forms.PictureBox();
             this.ptbMaximize = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlFormularios = new System.Windows.Forms.Panel();
             this.pnlConteiner.SuspendLayout();
+            this.pnlFormularios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.pnlBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMaximize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnlFormularios.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlConteiner
@@ -68,6 +68,39 @@ namespace Presentation
             this.pnlConteiner.Name = "pnlConteiner";
             this.pnlConteiner.Size = new System.Drawing.Size(1100, 600);
             this.pnlConteiner.TabIndex = 0;
+            // 
+            // pnlFormularios
+            // 
+            this.pnlFormularios.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlFormularios.Controls.Add(this.label1);
+            this.pnlFormularios.Controls.Add(this.pictureBox1);
+            this.pnlFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFormularios.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.pnlFormularios.Location = new System.Drawing.Point(240, 40);
+            this.pnlFormularios.Name = "pnlFormularios";
+            this.pnlFormularios.Size = new System.Drawing.Size(860, 560);
+            this.pnlFormularios.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
+            this.label1.Location = new System.Drawing.Point(299, 385);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 31);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Medical";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.Health_PNG_Image;
+            this.pictureBox1.Location = new System.Drawing.Point(200, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(498, 353);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // pnlMenu
             // 
@@ -129,7 +162,7 @@ namespace Presentation
             this.btnChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChat.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnChat.Location = new System.Drawing.Point(0, 311);
+            this.btnChat.Location = new System.Drawing.Point(7, 239);
             this.btnChat.Name = "btnChat";
             this.btnChat.Size = new System.Drawing.Size(230, 45);
             this.btnChat.TabIndex = 4;
@@ -163,7 +196,7 @@ namespace Presentation
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfig.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnConfig.Location = new System.Drawing.Point(3, 249);
+            this.btnConfig.Location = new System.Drawing.Point(4, 290);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(230, 45);
             this.btnConfig.TabIndex = 3;
@@ -250,39 +283,6 @@ namespace Presentation
             this.ptbMaximize.TabStop = false;
             this.ptbMaximize.Click += new System.EventHandler(this.ptbMaximize_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.Health_PNG_Image;
-            this.pictureBox1.Location = new System.Drawing.Point(200, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(498, 353);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
-            this.label1.Location = new System.Drawing.Point(299, 385);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 31);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Medical";
-            // 
-            // pnlFormularios
-            // 
-            this.pnlFormularios.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlFormularios.Controls.Add(this.label1);
-            this.pnlFormularios.Controls.Add(this.pictureBox1);
-            this.pnlFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFormularios.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pnlFormularios.Location = new System.Drawing.Point(240, 40);
-            this.pnlFormularios.Name = "pnlFormularios";
-            this.pnlFormularios.Size = new System.Drawing.Size(860, 560);
-            this.pnlFormularios.TabIndex = 2;
-            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,15 +294,15 @@ namespace Presentation
             this.Name = "FormMainMenu";
             this.Load += new System.EventHandler(this.FormMainMenu_Load);
             this.pnlConteiner.ResumeLayout(false);
+            this.pnlFormularios.ResumeLayout(false);
+            this.pnlFormularios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlMenu.ResumeLayout(false);
             this.pnlBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbMaximize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnlFormularios.ResumeLayout(false);
-            this.pnlFormularios.PerformLayout();
             this.ResumeLayout(false);
 
         }

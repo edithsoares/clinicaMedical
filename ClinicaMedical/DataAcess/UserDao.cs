@@ -9,14 +9,19 @@ namespace DataAcess
     // - Camada de acesso a dados
     //
 
+
     public class UserDao: ConnectionToSql
     {
-        // Login
+
+        SqlDataReader reader = null;
+        DataTable table = new DataTable();
+     
+
+        // Validar o nome de usuário e senha para o log
         public bool Login(string user, string pass)
         {
             using (var connection = GetConnection())
             {
-                // Abre o Banco
                 connection.Open();
 
                 using (var command = new SqlCommand())
@@ -66,7 +71,7 @@ namespace DataAcess
             {
                 connection.Open();
 
-                using(var command = new SqlCommand())
+                using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
 
@@ -94,29 +99,136 @@ namespace DataAcess
 
         }
 
-        //
-        // - Segurança de acordo com os tipos ou posições / Cargos dos usuários.
-        //
+        // OPERAÇÕES DO CRUD
+           
 
-        // Verifica Posição / Cargo de user
-        public void ManagePermissions()
+        public DataTable Exibir()
         {
-            if (CacheDoUsuario.Position == Positions.Receptionist)
+            try
             {
-                // Add métodos de restrição de acesso ao user.
+                using (var connection =  GetConnection())
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "MostrarUsers";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        reader = command.ExecuteReader();
+                        table.Load(reader);
+                        connection.Close();
+                        return table;
+                    }
+                }
             }
-            else if (CacheDoUsuario.Position == Positions.Accounting)
+            catch (Exception)
             {
-                // Add métodos de restrição de acesso ao user.
+               
+                throw;
             }
-            else if (CacheDoUsuario.Position == Positions.Administrator)
+
+            
+        }
+
+       
+
+        public void Inserir(string loginName, string password, string firstName, string sobrenome, string position, string email)
+        {
+            try
             {
-                // Add métodos de restrição de acesso ao user.
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "InserirUsers";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@loginName", loginName);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@sobrenome", sobrenome);
+                        command.Parameters.AddWithValue("@position", position);
+                        command.Parameters.AddWithValue("@email", email);
+
+                        command.ExecuteNonQuery();
+                        command.Parameters.Clear();
+                        connection.Close();
+                    }
+                }
             }
-            else
+            catch (Exception)
             {
-                // User não encontrado ou Carho não existe
+
+                throw;
             }
         }
-    }   
+
+        public void Editar(string loginName, string password, string firstName, string sobrenome, string position, string email, int idUser)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "EditarUser";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@loginName", loginName);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@sobrenome", sobrenome);
+                        command.Parameters.AddWithValue("@position", position);
+                        command.Parameters.AddWithValue("@email", email);
+                        command.Parameters.AddWithValue("@idUser", idUser);
+
+                        command.ExecuteNonQuery();
+                        command.Parameters.Clear();
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public void Excluir(int idUser)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "ExcluirUser";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@idUser", idUser);
+
+                        command.ExecuteNonQuery();
+                        command.Parameters.Clear();                        
+                        connection.Close();                        
+                    }
+                }
+            }
+            catch (Exception)
+            {
+              
+                throw;
+            }
+        }
+    }
 }

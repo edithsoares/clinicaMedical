@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAcess;
 using Common.Cache;
+using System.Data;
 
 namespace Domain
 {
@@ -16,8 +13,8 @@ namespace Domain
     public class UserModel
     {
         UserDao userDao = new UserDao();
-
-        // Login
+        
+ 
         public bool LoginUser(string user, string pass)
         {
             return userDao.Login(user, pass);
@@ -42,29 +39,30 @@ namespace Domain
                 return false;
         }
 
-        //
-        // - Segurança de acordo com os tipos ou posições / Cargos dos usuários.
-        //
-
-        // Verifica Posição / Cargo de user
-        public void ManagePermissions()
+       // Métodos do Crud de configuração
+       public DataTable MostrarUsers()
         {
-            if (CacheDoUsuario.Position == Positions.Receptionist)
-            {
-                // Add métodos de restrição de acesso ao user.
-            }
-            else if (CacheDoUsuario.Position == Positions.Accounting)
-            {
-                // Add métodos de restrição de acesso ao user.
-            }
-            else if (CacheDoUsuario.Position == Positions.Administrator)
-            {
-                // Add métodos de restrição de acesso ao user.
-            }
-            else
-            {
-                // User não encontrado ou Carho não existe
-            }
+            _ = new DataTable();
+            DataTable table = userDao.Exibir();
+            return table;
         }
+
+        public void InserirUsers(string loginName, string password, string firstName, string sobrenome, string position, string email)
+        {
+            userDao.Inserir(loginName, password, firstName, sobrenome, position, email);
+        }
+
+        public void EditarUser(string loginName, string password, string firstName, string sobrenome, string position, string email, string idUser)
+        {
+            userDao.Editar(loginName, password, firstName, sobrenome, position, email, Convert.ToInt32(idUser));
+        }
+
+        public void ExcluirUser(int idUser)
+        {
+            userDao.Excluir(idUser);
+        }
+
+
+
     }
 }

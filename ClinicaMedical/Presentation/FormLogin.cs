@@ -82,7 +82,7 @@ namespace Presentation
                         if (validLogin == true)
                         {
                             FormMainMenu mainMenu = new FormMainMenu();
-                            MessageBox.Show("Bem Vindo " + CacheDoUsuario.FirstName + ", " + CacheDoUsuario.Sobrenome);
+                            MessageBox.Show("Bem Vindo " + CacheDoUsuario.FirstName + " " + CacheDoUsuario.Sobrenome);
                             mainMenu.Show();
                             mainMenu.FormClosed += Logout;
                             this.Hide();
