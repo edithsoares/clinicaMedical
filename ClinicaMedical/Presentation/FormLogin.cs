@@ -119,7 +119,13 @@ namespace Presentation
                 this.Show();
                 CacheDoUsuario.Password = " ";
                 CacheDoUsuario.UserName = " ";
-        }     
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var recoverPassword = new FormRecoverPass();
+            recoverPassword.ShowDialog();
+        }
     }
 }
 

@@ -212,9 +212,9 @@ namespace Presentation
             // 
             this.dgvDados.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDados.Location = new System.Drawing.Point(12, 169);
+            this.dgvDados.Location = new System.Drawing.Point(4, 169);
             this.dgvDados.Name = "dgvDados";
-            this.dgvDados.Size = new System.Drawing.Size(836, 285);
+            this.dgvDados.Size = new System.Drawing.Size(854, 285);
             this.dgvDados.TabIndex = 21;
             this.dgvDados.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDados_CellFormatting);
             // 

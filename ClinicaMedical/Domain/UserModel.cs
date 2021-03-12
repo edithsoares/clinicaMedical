@@ -52,14 +52,20 @@ namespace Domain
             userDao.Inserir(loginName, password, firstName, sobrenome, position, email, cpf, telefone);
         }
 
-        public void Editar(string loginName, string password, string firstName, string sobrenome, string position, string email,string cpf, string telefone, string userId)
+        public void Editar(string userName, string password, string nome, string sobrenome, string cargo, string email,string cpf, string telefone, string userId)
         {
-            userDao.Editar(loginName, password, firstName, sobrenome, position, email, cpf, telefone, Convert.ToInt32(userId));
+            userDao.Editar(userName, password, nome, sobrenome, cargo, email, cpf, telefone, Convert.ToInt32(userId));
         }
 
         public void Excluir(int userId)
         {
             userDao.Excluir(userId);
+        }
+
+        // Recuperar senha
+        public string RecoverPassword(string userRequesting)
+        {
+            return userDao.RecoverPassword(userRequesting);
         }
     }
 }
