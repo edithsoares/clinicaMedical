@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Data.SqlClient;
 
 namespace DataAcess
@@ -14,7 +11,7 @@ namespace DataAcess
         public ConnectionToSql()
         {
             // String de Conexão
-            connectionString = @"Server=DESKTOP-AVNQA5V\SQLEXPRESS; DataBase= MyCompany; integrated security= true";
+            connectionString = @"Server=DESKTOP-AVNQA5V\SQLEXPRESS; DataBase= Clinica; integrated security= true";
         }
 
         protected SqlConnection GetConnection()

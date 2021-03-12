@@ -24,7 +24,7 @@ namespace Presentation
         private void MostrarUsers()
         {
             var userModel = new UserModel();
-            dgvDados.DataSource = userModel.MostrarUsers();
+            dgvDados.DataSource = userModel.Mostrar();
             
         }
 
@@ -37,7 +37,7 @@ namespace Presentation
             {
                 try
                 {
-                    userModel.InserirUsers(txtUserName.Text, txtPass.Text, txtNome.Text, txtSobrenome.Text, txtCargo.Text, txtEmail.Text) ;
+                    userModel.Inserir(txtUserName.Text, txtPass.Text, txtNome.Text, txtSobrenome.Text, txtCargo.Text, txtEmail.Text,txtCpf.Text, txtTelefone.Text) ;
                     MessageBox.Show("Salvo corretamente");
                     MostrarUsers();
                     LimprarCampos();
@@ -53,7 +53,7 @@ namespace Presentation
             {
                 try
                 {
-                    userModel.EditarUser(txtUserName.Text, txtPass.Text, txtNome.Text, txtSobrenome.Text, txtCargo.Text, txtEmail.Text, idUser);
+                    userModel.Editar(txtUserName.Text, txtPass.Text, txtNome.Text, txtSobrenome.Text, txtCargo.Text, txtEmail.Text, txtCpf.Text, txtTelefone.Text, idUser);
                     MessageBox.Show("Dados atualizados corretamente");
                     MostrarUsers();
                     LimprarCampos();
@@ -74,12 +74,14 @@ namespace Presentation
             {
                 Editar = true;
 
-                txtUserName.Text = dgvDados.CurrentRow.Cells["LoginName"].Value.ToString();
+                txtUserName.Text = dgvDados.CurrentRow.Cells["UserName"].Value.ToString();
                 txtPass.Text = dgvDados.CurrentRow.Cells["Password"].Value.ToString();
-                txtNome.Text = dgvDados.CurrentRow.Cells["FirstName"].Value.ToString();
-                txtSobrenome.Text = dgvDados.CurrentRow.Cells["LastName"].Value.ToString();
-                txtCargo.Text = dgvDados.CurrentRow.Cells["Position"].Value.ToString();
+                txtNome.Text = dgvDados.CurrentRow.Cells["Nome"].Value.ToString();
+                txtSobrenome.Text = dgvDados.CurrentRow.Cells["Sobrenome"].Value.ToString();
+                txtCargo.Text = dgvDados.CurrentRow.Cells["Cargo"].Value.ToString();
                 txtEmail.Text = dgvDados.CurrentRow.Cells["Email"].Value.ToString();
+                txtCpf.Text = dgvDados.CurrentRow.Cells["Cpf"].Value.ToString();
+                txtTelefone.Text = dgvDados.CurrentRow.Cells["Telefone"].Value.ToString();
                 idUser = dgvDados.CurrentRow.Cells["UserId"].Value.ToString();
             }
             else
@@ -94,7 +96,7 @@ namespace Presentation
             if (dgvDados.SelectedRows.Count > 0)
             {
                 idUser = dgvDados.CurrentRow.Cells["UserId"].Value.ToString();
-                userModel.ExcluirUser(Convert.ToInt32(idUser));
+                userModel.Excluir(Convert.ToInt32(idUser));
                 MessageBox.Show("Usúario exluido corretamente");
                 MostrarUsers();
             }
@@ -117,6 +119,8 @@ namespace Presentation
             txtEmail.Text = "";
             txtUserName.Text = "";
             txtPass.Text = "";
+            txtTelefone.Text = "";
+            txtCpf.Text = "";
         }
 
 

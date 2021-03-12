@@ -27,10 +27,10 @@ namespace Domain
         public bool SecurityLogin()
         {
             // Se user 
-            if (CacheDoUsuario.IdUser >= 1)
+            if (CacheDoUsuario.UserId >= 1)
             {
                 // Verifica se os dados estão no banco
-                if (userDao.ExisteUsers(CacheDoUsuario.IdUser, CacheDoUsuario.LoginName, CacheDoUsuario.Password) == true)
+                if (userDao.ExisteUsers(CacheDoUsuario.UserId, CacheDoUsuario.UserName, CacheDoUsuario.Password) == true)
                     return true;
                 else
                     return false;
@@ -40,29 +40,26 @@ namespace Domain
         }
 
        // Métodos do Crud de configuração
-       public DataTable MostrarUsers()
+       public DataTable Mostrar()
         {
             _ = new DataTable();
             DataTable table = userDao.Exibir();
             return table;
         }
 
-        public void InserirUsers(string loginName, string password, string firstName, string sobrenome, string position, string email)
+        public void Inserir(string loginName, string password, string firstName, string sobrenome, string position, string email, string cpf, string telefone)
         {
-            userDao.Inserir(loginName, password, firstName, sobrenome, position, email);
+            userDao.Inserir(loginName, password, firstName, sobrenome, position, email, cpf, telefone);
         }
 
-        public void EditarUser(string loginName, string password, string firstName, string sobrenome, string position, string email, string idUser)
+        public void Editar(string loginName, string password, string firstName, string sobrenome, string position, string email,string cpf, string telefone, string userId)
         {
-            userDao.Editar(loginName, password, firstName, sobrenome, position, email, Convert.ToInt32(idUser));
+            userDao.Editar(loginName, password, firstName, sobrenome, position, email, cpf, telefone, Convert.ToInt32(userId));
         }
 
-        public void ExcluirUser(int idUser)
+        public void Excluir(int userId)
         {
-            userDao.Excluir(idUser);
+            userDao.Excluir(userId);
         }
-
-
-
     }
 }

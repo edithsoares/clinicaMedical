@@ -49,6 +49,10 @@ namespace Presentation
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dgvDados = new System.Windows.Forms.DataGridView();
+            this.txtTelefone = new System.Windows.Forms.TextBox();
+            this.txtCpf = new System.Windows.Forms.TextBox();
+            this.lblTelefone = new System.Windows.Forms.Label();
+            this.lblCpf = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,17 +212,53 @@ namespace Presentation
             // 
             this.dgvDados.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDados.Location = new System.Drawing.Point(60, 169);
+            this.dgvDados.Location = new System.Drawing.Point(12, 169);
             this.dgvDados.Name = "dgvDados";
-            this.dgvDados.Size = new System.Drawing.Size(733, 285);
+            this.dgvDados.Size = new System.Drawing.Size(836, 285);
             this.dgvDados.TabIndex = 21;
             this.dgvDados.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDados_CellFormatting);
+            // 
+            // txtTelefone
+            // 
+            this.txtTelefone.Location = new System.Drawing.Point(364, 143);
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(160, 20);
+            this.txtTelefone.TabIndex = 22;
+            // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(105, 143);
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(160, 20);
+            this.txtCpf.TabIndex = 23;
+            // 
+            // lblTelefone
+            // 
+            this.lblTelefone.AutoSize = true;
+            this.lblTelefone.Location = new System.Drawing.Point(285, 150);
+            this.lblTelefone.Name = "lblTelefone";
+            this.lblTelefone.Size = new System.Drawing.Size(52, 13);
+            this.lblTelefone.TabIndex = 24;
+            this.lblTelefone.Text = "Telefone:";
+            // 
+            // lblCpf
+            // 
+            this.lblCpf.AutoSize = true;
+            this.lblCpf.Location = new System.Drawing.Point(61, 146);
+            this.lblCpf.Name = "lblCpf";
+            this.lblCpf.Size = new System.Drawing.Size(30, 13);
+            this.lblCpf.TabIndex = 25;
+            this.lblCpf.Text = "CPF:";
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 560);
+            this.Controls.Add(this.lblCpf);
+            this.Controls.Add(this.lblTelefone);
+            this.Controls.Add(this.txtCpf);
+            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.dgvDados);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtCargo);
@@ -270,5 +310,9 @@ namespace Presentation
         private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DataGridView dgvDados;
+        private System.Windows.Forms.TextBox txtTelefone;
+        private System.Windows.Forms.TextBox txtCpf;
+        private System.Windows.Forms.Label lblTelefone;
+        private System.Windows.Forms.Label lblCpf;
     }
 }

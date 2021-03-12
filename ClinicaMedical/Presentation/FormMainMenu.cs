@@ -56,19 +56,19 @@ namespace Presentation
         // Verifica Posição / Cargo de user
         public void ManagePermissionss()
         {
-            if (CacheDoUsuario.Position == Positions.Receptionist)
+            if (CacheDoUsuario.Cargo == Positions.Receptionist)
             {
                 // Restrição de acesso ao user.
                 btnConfig.Enabled = false;
             }
-           if (CacheDoUsuario.Position == Positions.Accounting)
+           if (CacheDoUsuario.Cargo == Positions.Accounting)
             {
                 // Restrição de acesso ao user.
                 btnPaciente.Enabled = false;
                 btnHistorico.Enabled = false;
                 btnConfig.Enabled = false;
             }
-            if (CacheDoUsuario.Position == Positions.Administrator)
+            if (CacheDoUsuario.Cargo == Positions.Administrator)
             {
                 // Restrição de acesso ao user
                 // Sem restrição por enquanto

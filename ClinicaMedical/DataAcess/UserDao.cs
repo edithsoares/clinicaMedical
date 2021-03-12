@@ -28,7 +28,7 @@ namespace DataAcess
                 {
                     command.Connection = connection;
 
-                    command.CommandText = "Select * from Users where LoginName=@user and Password=@pass";
+                    command.CommandText = "Select * from Users where UserName=@user and Password=@pass";
 
                     command.Parameters.AddWithValue("@user", user);
                     command.Parameters.AddWithValue("@pass", pass);
@@ -39,14 +39,16 @@ namespace DataAcess
                     if (reader.HasRows)
                     {
                         while (reader.Read())
-                        {
-                            CacheDoUsuario.IdUser = reader.GetInt32(0);
-                            CacheDoUsuario.LoginName = reader.GetString(1);
+                        { //UserId, UserName, Password, Nome, Sobrenome, Cargo, Email, Cpf, Telefone 
+                            CacheDoUsuario.UserId = reader.GetInt32(0);
+                            CacheDoUsuario.UserName = reader.GetString(1);
                             CacheDoUsuario.Password = reader.GetString(2);
-                            CacheDoUsuario.FirstName = reader.GetString(3);
+                            CacheDoUsuario.Nome = reader.GetString(3);
                             CacheDoUsuario.Sobrenome = reader.GetString(4);
-                            CacheDoUsuario.Position = reader.GetString(5);
+                            CacheDoUsuario.Cargo = reader.GetString(5);
                             CacheDoUsuario.Email = reader.GetString(6);
+                            CacheDoUsuario.Cpf = reader.GetString(7);
+                            CacheDoUsuario.Telefone = reader.GetString(8);
                         }
                         return true;
                     }else
@@ -65,7 +67,7 @@ namespace DataAcess
         //
 
         // Verificação de Usúarios
-        public bool ExisteUsers(int id, string loginName, string pass)
+        public bool ExisteUsers(int id, string user, string pass)
         {
             using (var connection = GetConnection())
             {
@@ -74,12 +76,12 @@ namespace DataAcess
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-
-                    command.CommandText = @"select * from users where userId=@id and 
-                        loginName=@loginName and password=@pass";
+                    //UserId, UserName, Password, Nome, Sobrenome, Cargo, Email, Cpf, Telefone 
+                    command.CommandText = @"select * from Users where UserId=@id and 
+                        UserName=@user and password=@pass";
 
                     command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@loginName", loginName);
+                    command.Parameters.AddWithValue("@user", user);
                     command.Parameters.AddWithValue("@pass", pass);
 
                     command.CommandType = CommandType.Text;
@@ -104,8 +106,7 @@ namespace DataAcess
 
         public DataTable Exibir()
         {
-            try
-            {
+            
                 using (var connection =  GetConnection())
                 {
                     connection.Open();
@@ -113,7 +114,7 @@ namespace DataAcess
                     using (var command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "MostrarUsers";
+                        command.CommandText = "StMostrar";
                         command.CommandType = CommandType.StoredProcedure;
 
                         reader = command.ExecuteReader();
@@ -122,90 +123,75 @@ namespace DataAcess
                         return table;
                     }
                 }
-            }
-            catch (Exception)
-            {
-               
-                throw;
-            }
+           
 
             
         }
 
        
 
-        public void Inserir(string loginName, string password, string firstName, string sobrenome, string position, string email)
+        public void Inserir(string userName, string password, string nome, string sobrenome, string cargo, string email, string cpf, string telefone)
         {
-            try
-            {
+            
                 using (var connection = GetConnection())
                 {
                     connection.Open();
                     using (var command = new SqlCommand())
-                    {
+                    { //UserId, UserName, Password, Nome, Sobrenome, Cargo, Email, Cpf, Telefone 
                         command.Connection = connection;
-                        command.CommandText = "InserirUsers";
+                        command.CommandText = "StInserir";
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@loginName", loginName);
+                        command.Parameters.AddWithValue("@userName", userName);
                         command.Parameters.AddWithValue("@password", password);
-                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@nome", nome);
                         command.Parameters.AddWithValue("@sobrenome", sobrenome);
-                        command.Parameters.AddWithValue("@position", position);
+                        command.Parameters.AddWithValue("@cargo", cargo);
                         command.Parameters.AddWithValue("@email", email);
+                        command.Parameters.AddWithValue("@cpf", cpf);
+                        command.Parameters.AddWithValue("@telefone", telefone);
 
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();
                         connection.Close();
                     }
                 }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+           
         }
 
-        public void Editar(string loginName, string password, string firstName, string sobrenome, string position, string email, int idUser)
+        public void Editar(string userName, string password, string nome, string sobrenome, string cargo, string email, string cpf, string telefone, int userId)
         {
-            try
-            {
+            
                 using (var connection = GetConnection())
                 {
                     connection.Open();
                     using (var command = new SqlCommand())
-                    {
+                    { //UserId, UserName, Password, Nome, Sobrenome, Cargo, Email, Cpf, Telefone 
                         command.Connection = connection;
-                        command.CommandText = "EditarUser";
+                        command.CommandText = "StEditar";
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@loginName", loginName);
+                        command.Parameters.AddWithValue("@userName", userName);
                         command.Parameters.AddWithValue("@password", password);
-                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@nome", nome);
                         command.Parameters.AddWithValue("@sobrenome", sobrenome);
-                        command.Parameters.AddWithValue("@position", position);
+                        command.Parameters.AddWithValue("@cargo", cargo);
                         command.Parameters.AddWithValue("@email", email);
-                        command.Parameters.AddWithValue("@idUser", idUser);
+                        command.Parameters.AddWithValue("@cpf", cpf);
+                        command.Parameters.AddWithValue("@telefone", telefone);
+                        command.Parameters.AddWithValue("@idUser", userId);
 
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();
                         connection.Close();
                     }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+                }                      
         }
 
 
-        public void Excluir(int idUser)
+        public void Excluir(int userId)
         {
-            try
-            {
+           
                 using (var connection = GetConnection())
                 {
                     connection.Open();
@@ -213,22 +199,17 @@ namespace DataAcess
                     using (var command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "ExcluirUser";
+                        command.CommandText = "StExcluir";
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@idUser", idUser);
+                        command.Parameters.AddWithValue("@userId", userId);
 
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();                        
                         connection.Close();                        
                     }
                 }
-            }
-            catch (Exception)
-            {
-              
-                throw;
-            }
+           
         }
     }
 }
